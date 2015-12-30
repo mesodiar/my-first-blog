@@ -1,3 +1,5 @@
+from django.shortcuts import redirect
+
 {% extends 'blog/base.html' %}
 
 {% block content %}
@@ -7,8 +9,10 @@
             {{ post.published_date}}
           </div>
         {% endif %}
-
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         <h1>{{ post.title}}</h1>
         <p>{{post.text|linebreaks }}</p>
     </div>
 {% endblock %}
+
+return redirect('post_detail',pk=post.pk)
